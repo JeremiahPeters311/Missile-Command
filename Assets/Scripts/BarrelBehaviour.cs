@@ -13,7 +13,7 @@ public class BarrelBehaviour : MonoBehaviour
         Vector3 difference = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
         difference.Normalize();
         float rotation_z = Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg;
-        transform.rotation = Quaternion.Euler(0f, 0f, rotation_z + 180);
+        transform.rotation = Quaternion.Euler(0f, 0f, rotation_z + 270);
 
         if (Input.GetMouseButtonDown(0))
         {
