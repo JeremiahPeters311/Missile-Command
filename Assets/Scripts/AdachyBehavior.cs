@@ -11,6 +11,10 @@ public class AdachyBehavior : MonoBehaviour
     void Update()
     {
         GameController gc = GameObject.FindObjectOfType<GameController>();
+        if (gc.ShadowCount <= 0)
+        {
+            UnityEngine.SceneManagement.SceneManager.LoadScene(0);
+        }
         if (ShadowTarget == null && gc.ShadowCount != 0)
         {
             FindTarget = false;
@@ -72,22 +76,38 @@ public class AdachyBehavior : MonoBehaviour
 
     IEnumerator KillAllShadows()
     {
+        GameController gc = GameObject.FindObjectOfType<GameController>();
+        if (gc.ShadowCount <= 0)
+        {
+            UnityEngine.SceneManagement.SceneManager.LoadScene(0);
+        }
         while (true)
         {
             if (Destination == false)
             {
+                if (gc.ShadowCount <= 0)
+                {
+                    UnityEngine.SceneManagement.SceneManager.LoadScene(0);
+                }
                 if (ShadowTarget != null)
                 {
+                    if (gc.ShadowCount <= 0)
+                    {
+                        UnityEngine.SceneManagement.SceneManager.LoadScene(0);
+                    }
                     this.transform.position = Vector3.MoveTowards(this.transform.position, ShadowTarget.transform.position, 0.025f * Time.deltaTime);
                     yield return new WaitForSeconds(0.01f);
                 }
             }
         }
-        //yield return null;
     }
     void OnCollisionEnter2D(Collision2D collision)
     {
         GameController gc = GameObject.FindObjectOfType<GameController>();
+        if (gc.ShadowCount <= 0)
+        {
+            UnityEngine.SceneManagement.SceneManager.LoadScene(0);
+        }
         if (collision.gameObject.tag == "Shadow")
         {
             Destination = true;
@@ -102,6 +122,10 @@ public class AdachyBehavior : MonoBehaviour
         }
         if (collision.gameObject.tag == "Projectile")
         {
+            if (gc.ShadowCount <= 0)
+            {
+                UnityEngine.SceneManagement.SceneManager.LoadScene(0);
+            }
             Destroy(gameObject);
         }
     }

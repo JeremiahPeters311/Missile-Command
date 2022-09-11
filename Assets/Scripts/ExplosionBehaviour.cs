@@ -11,5 +11,6 @@ public class ExplosionBehaviour : MonoBehaviour
     {
         yield return new WaitForSeconds(0.745f);
         Destroy(gameObject);
+        yield return null;
     }
 }
