@@ -21,8 +21,6 @@ public class BarrelBehaviour : MonoBehaviour
             TargetLocation.z = 0;
             GameObject ThisCabbage = Instantiate(Cabbage, new Vector3(0, -3, 0), Quaternion.identity);
             StartCoroutine(CabbageMovement(ThisCabbage, TargetLocation));
-            //Instantiate(Target, TargetLocation, Quaternion.identity);
-            //Debug.Log(Input.mousePosition);
         }
     }
 

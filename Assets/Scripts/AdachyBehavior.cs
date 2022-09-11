@@ -97,8 +97,8 @@ public class AdachyBehavior : MonoBehaviour
             {
                 UnityEngine.SceneManagement.SceneManager.LoadScene(0);
             }
-            Destroy(gameObject);
             Destroy(collision.gameObject);
+            Destroy(gameObject);
         }
         if (collision.gameObject.tag == "Projectile")
         {
