@@ -10,7 +10,8 @@ public class AdachyBehavior : MonoBehaviour
 
     void Update()
     {
-        if (ShadowTarget == null)
+        GameController gc = GameObject.FindObjectOfType<GameController>();
+        if (ShadowTarget == null && gc.ShadowCount != 0)
         {
             FindTarget = false;
         }
@@ -92,6 +93,10 @@ public class AdachyBehavior : MonoBehaviour
             Destination = true;
             Instantiate(Explosion, this.transform.position, Quaternion.identity);
             gc.ShadowCount--;
+            if (gc.ShadowCount <= 0)
+            {
+                UnityEngine.SceneManagement.SceneManager.LoadScene(0);
+            }
             Destroy(gameObject);
             Destroy(collision.gameObject);
         }

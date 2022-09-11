@@ -15,7 +15,6 @@ public class BarrelBehaviour : MonoBehaviour
         float rotation_z = Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.Euler(0f, 0f, rotation_z + 180);
 
-
         if (Input.GetMouseButtonDown(0))
         {
             TargetLocation = cam.ScreenToWorldPoint(Input.mousePosition);
