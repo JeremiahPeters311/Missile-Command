@@ -77,24 +77,12 @@ public class AdachyBehavior : MonoBehaviour
     IEnumerator KillAllShadows()
     {
         GameController gc = GameObject.FindObjectOfType<GameController>();
-        if (gc.ShadowCount <= 0)
-        {
-            UnityEngine.SceneManagement.SceneManager.LoadScene(0);
-        }
         while (true)
         {
             if (Destination == false)
             {
-                if (gc.ShadowCount <= 0)
-                {
-                    UnityEngine.SceneManagement.SceneManager.LoadScene(0);
-                }
                 if (ShadowTarget != null)
                 {
-                    if (gc.ShadowCount <= 0)
-                    {
-                        UnityEngine.SceneManagement.SceneManager.LoadScene(0);
-                    }
                     this.transform.position = Vector3.MoveTowards(this.transform.position, ShadowTarget.transform.position, 0.025f * Time.deltaTime);
                     yield return new WaitForSeconds(0.01f);
                 }
@@ -113,11 +101,14 @@ public class AdachyBehavior : MonoBehaviour
             Destination = true;
             Instantiate(Explosion, this.transform.position, Quaternion.identity);
             gc.ShadowCount--;
-            if (gc.ShadowCount <= 0)
+            if (gc.ShadowCount >= 1)
+            {
+                Destroy(collision.gameObject);
+            }
+            else if(gc.ShadowCount == 0)
             {
                 UnityEngine.SceneManagement.SceneManager.LoadScene(0);
             }
-            Destroy(collision.gameObject);
             Destroy(gameObject);
         }
         if (collision.gameObject.tag == "Projectile")
