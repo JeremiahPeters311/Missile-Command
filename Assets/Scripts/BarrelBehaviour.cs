@@ -6,6 +6,7 @@ public class BarrelBehaviour : MonoBehaviour
 {
     public GameObject Cabbage;
     public GameObject Explosion;
+    public GameObject SpawnLocation;
     public Vector3 TargetLocation;
     public Camera cam;
     void Update()
@@ -24,7 +25,7 @@ public class BarrelBehaviour : MonoBehaviour
         {
             TargetLocation = cam.ScreenToWorldPoint(Input.mousePosition);
             TargetLocation.z = 0;
-            GameObject ThisCabbage = Instantiate(Cabbage, new Vector3(0, -3, 0), Quaternion.identity);
+            GameObject ThisCabbage = Instantiate(Cabbage, SpawnLocation.transform.position, Quaternion.identity);
             StartCoroutine(CabbageMovement(ThisCabbage, TargetLocation));
         }
     }
